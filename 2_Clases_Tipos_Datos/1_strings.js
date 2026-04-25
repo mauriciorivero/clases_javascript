@@ -1,6 +1,5 @@
-var nombre = "Mauricio";
-console.log(nombre+numero);
+var nombre = 'Mauricio'
 
-const name = "Ana";
-const message = `Bienvenida, ${name}!*`;
+const message = `Bienvenida, ${nombre}!*`;
 console.log(message)
+

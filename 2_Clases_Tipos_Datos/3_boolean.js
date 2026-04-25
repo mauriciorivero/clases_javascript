@@ -1,6 +1,5 @@
 var isCoding = true;
 var isTired = false;
-
 if(isCoding!=true){
     console.log("Esta codificando")
 }else{
