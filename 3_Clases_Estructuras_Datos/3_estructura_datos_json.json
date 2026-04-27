@@ -1,0 +1,18 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Pastel de Manzana",
+    "recipeIngredient": [
+        "3 manzanas",
+        "250g de harina"
+    ],
+    "pasos": [
+        "Limpiar manzanas",
+        "Cortar manzanas en julianas",
+        "Echarlas en un recipiente",
+        "Batirlas",
+        "Mezclarlas con la harina",
+        "Batir nuevamente",
+        "Hornear por 30min a 250 grados"
+    ]
+}
