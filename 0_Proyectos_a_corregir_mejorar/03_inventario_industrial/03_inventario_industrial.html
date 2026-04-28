@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IndusTech — Inventario Industrial</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Mono:wght@400;600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles-industrial.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+     CABECERA TIPO TABLERO DE CONTROL INDUSTRIAL
+     Los LEDs indican el estado general del sistema.
+     El título usa tipografía en mayúsculas con efecto luminoso.
+============================================================ -->
+  <header class="site-header">
+    <h1>⚙ INDUSTECH — CONTROL DE INVENTARIO</h1>
+    <div class="header-led">
+      <span style="color:#8898a8;font-size:.8rem;letter-spacing:2px;">SISTEMA</span>
+      <div class="led led-verde"></div>
+      <div class="led led-rojo"></div>
+      <div class="led led-amari"></div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+     LAYOUT DE DOS COLUMNAS: Sidebar + Área principal
+============================================================ -->
+  <div class="layout">
+
+    <!-- ─── Sidebar de controles ─────────────────────────────── -->
+    <aside class="sidebar">
+      <p class="sidebar-titulo"
+        style="font-size:.7rem;letter-spacing:3px;color:var(--texto-s);margin-bottom:16px;padding:8px 0;border-bottom:1px solid var(--metal-3);">
+        PANEL DE CONTROL</p>
+
+      <!-- Filtros por categoría -->
+      <p class="sidebar-label">FILTRAR POR CATEGORÍA</p>
+      <button class="btn-industrial" onclick="filtrarCategoria('todas')">▶ Todas</button>
+      <button class="btn-industrial" onclick="filtrarCategoria('mecanica')">▶ Mecánica</button>
+      <button class="btn-industrial" onclick="filtrarCategoria('electrica')">▶ Eléctrica</button>
+      <button class="btn-industrial" onclick="filtrarCategoria('hidraulica')">▶ Hidráulica</button>
+      <button class="btn-industrial" onclick="filtrarCategoria('seguridad')">▶ Seguridad</button>
+
+      <hr class="divider" />
+
+      <!-- Agregar stock -->
+      <p class="sidebar-label">AJUSTE DE STOCK</p>
+      <label class="sidebar-label" for="inputCodigo">CÓDIGO PRODUCTO</label>
+      <input class="input-industrial" id="inputCodigo" type="text" placeholder="ej: MCN-001" />
+      <label class="sidebar-label" for="inputCantidad">CANTIDAD</label>
+      <input class="input-industrial" id="inputCantidad" type="number" min="1" value="10" />
+      <button class="btn-industrial ok" onclick="agregarStock()">▲ INGRESAR STOCK</button>
+      <button class="btn-industrial peligro" onclick="retirarStock()">▼ RETIRAR STOCK</button>
+
+      <hr class="divider" />
+
+      <!-- Estadísticas -->
+      <p class="sidebar-label">RESUMEN</p>
+      <div style="font-family:'Roboto Mono',monospace;font-size:.82rem;color:var(--texto-s);line-height:2;">
+        <div>Total ítems: <span id="statTotal" style="color:var(--texto)">—</span></div>
+        <div>Stock bajo: <span id="statBajo" style="color:var(--peligro)">—</span></div>
+        <div>Valor total: <span id="statValor" style="color:var(--acento2)">—</span></div>
+      </div>
+    </aside>
+
+    <!-- ─── Área principal ──────────────────────────────────── -->
+    <main class="main-content">
+
+      <!-- Tabla de inventario -->
+      <div class="panel-metal tabla-panel">
+        <div class="tabla-header">
+          <h2>📋 Inventario de Productos</h2>
+          <span id="lblFecha"></span>
+        </div>
+        <table id="tablaInventario">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Stock</th>
+              <th>Precio Unitario</th>
+              <th>Valor Total</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyInventario"></tbody>
+        </table>
+      </div>
+
+      <!-- Log de operaciones -->
+      <div class="panel-metal log-panel">
+        <p class="log-titulo">▶ LOG DE OPERACIONES</p>
+        <div id="logOperaciones">
+          <div class="log-linea">Sistema iniciado. Cargando inventario...</div>
+        </div>
+      </div>
+
+    </main>
+  </div><!-- fin layout -->
+
+
+  <script src="js/control-industrial.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PeoplePower — Dashboard de Recursos Humanos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles-dashboard.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+     CABECERA NEOBRUTALIST
+     Sin gradientes, sin sombras suaves: todo directo y crudo.
+     Fondo amarillo plano con borde negro grueso.
+============================================================ -->
+  <header class="site-header">
+    <h1>⚡ PEOPLE POWER — RRHH</h1>
+    <div class="header-badges">
+      <span class="badge-header">Q2 2024</span>
+      <span class="badge-header" id="lblTotalEmpleados">Cargando...</span>
+    </div>
+  </header>
+
+  <!-- ============================================================
+     ÁREA PRINCIPAL
+============================================================ -->
+  <div class="main-layout">
+
+    <!-- ── KPIs superiores ──────────────────────────────────── -->
+    <div class="kpi-grid">
+      <div class="kpi-card neo-block">
+        <span class="kpi-num" id="kpiEmpleados">—</span>
+        <span class="kpi-label">Empleados activos</span>
+      </div>
+      <div class="kpi-card neo-block">
+        <span class="kpi-num" id="kpiSalarioPromedio">—</span>
+        <span class="kpi-label">Salario promedio</span>
+      </div>
+      <div class="kpi-card neo-block">
+        <span class="kpi-num" id="kpiDepartamentos">—</span>
+        <span class="kpi-label">Departamentos</span>
+      </div>
+      <div class="kpi-card neo-block">
+        <span class="kpi-num" id="kpiAsistencia">—</span>
+        <span class="kpi-label">Asistencia este mes</span>
+      </div>
+    </div>
+
+    <!-- ── Lista de empleados + Depart ──────────────────────── -->
+    <div class="two-col">
+      <div class="neo-block">
+        <div class="block-header">
+          <span>👥 DIRECTORIO DE EMPLEADOS</span>
+          <span id="contadorEmpleados">0 empleados</span>
+        </div>
+        <div class="lista-empleados" id="listaEmpleados"></div>
+      </div>
+
+      <div class="neo-block">
+        <div class="block-header"><span>🏢 DISTRIBUCIÓN POR DEPTO</span></div>
+        <div class="dept-list" id="deptList"></div>
+      </div>
+    </div>
+
+    <!-- ── Tabla salarial / análisis ────────────────────────── -->
+    <div class="two-col">
+      <div class="neo-block">
+        <div class="block-header">
+          <span>💰 ANÁLISIS SALARIAL</span>
+          <button class="neo-btn" style="font-size:.7rem;padding:4px 12px;"
+            onclick="ejecutarAnalisis()">CALCULAR</button>
+        </div>
+        <div class="resumen-box" id="resumenSalarial">
+          <p style="padding:20px;color:#888;text-align:center;">Haz clic en CALCULAR para ver el análisis</p>
+        </div>
+      </div>
+
+      <div class="neo-block">
+        <div class="block-header"><span>🚨 ALERTAS Y EVENTOS</span></div>
+        <div class="alertas-box" id="alertasBox">
+          <div class="alerta-item alerta-ok">Sistema inicializado correctamente.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Acciones ──────────────────────────────────────────── -->
+    <div class="neo-block full-col">
+      <div class="block-header"><span>⚙ ACCIONES RÁPIDAS</span></div>
+      <div class="acciones">
+        <button class="neo-btn azul" onclick="importarDatosJSON()">📥 IMPORTAR DATOS JSON</button>
+        <button class="neo-btn verde" onclick="filtrarDepartamento('Tecnología')">🖥 FILTRAR TECNOLOGÍA</button>
+        <button class="neo-btn naranja" onclick="filtrarDepartamento('Ventas')">💼 FILTRAR VENTAS</button>
+        <button class="neo-btn rosa" onclick="mostrarTodos()">📋 MOSTRAR TODOS</button>
+      </div>
+    </div>
+
+  </div><!-- fin main-layout -->
+
+
+  <script src="js/control-dashboards.js"></script>
+</body>
+
+</html>

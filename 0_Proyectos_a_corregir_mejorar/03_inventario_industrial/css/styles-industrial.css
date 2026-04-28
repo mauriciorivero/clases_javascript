@@ -1,0 +1,417 @@
+/*
+     * ═══════════════════════════════════════════════════════════════
+     *  ESTILO: ESQUEUOMORFISMO (Skeuomorphism)
+     *
+     *  El esqueuomorfismo imita la apariencia de objetos físicos reales.
+     *  En este caso: paneles de metal industrial, tableros de control,
+     *  tornillos, bordes embosados y texturas metálicas.
+     *
+     *  Técnicas clave:
+     *    - Gradientes lineales que simulan reflexión de luz en metal
+     *    - box-shadow con múltiples capas para relieve/hundido
+     *    - Texturas con repeating-linear-gradient (rayas de placa metálica)
+     *    - Bordes de 2px sólido para sensación de grosor físico
+     * ═══════════════════════════════════════════════════════════════
+     */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --metal-1: #8a9bae;
+    --metal-2: #b0c4d8;
+    --metal-3: #5a6a7a;
+    --metal-dark: #2c3a47;
+    --panel-bg: #d4dde8;
+    --acento: #e8a020;
+    /* Advertencia / acento naranja industrial */
+    --acento2: #2a9d3c;
+    /* Verde seguridad / OK                    */
+    --peligro: #c0392b;
+    /* Rojo peligro                            */
+    --texto: #1a2530;
+    --texto-s: #4a5a6a;
+    --tornillo: #7a8a9a;
+}
+
+body {
+    /* Textura de placa metálica: rayas horizontales sutiles */
+    background:
+        repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, .03) 2px,
+            rgba(0, 0, 0, .03) 4px),
+        linear-gradient(180deg, #c8d4e0 0%, #b8c8d8 100%);
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--texto);
+    min-height: 100vh;
+}
+
+/* ── Panel metálico (mixin base) ────────────────────────────── */
+.panel-metal {
+    background: linear-gradient(145deg, #d8e4f0 0%, #c0ceda 50%, #d0dcea 100%);
+    border: 2px solid var(--metal-2);
+    border-top-color: #e8f0f8;
+    border-left-color: #e8f0f8;
+    border-right-color: var(--metal-3);
+    border-bottom-color: var(--metal-3);
+    border-radius: 4px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .6),
+        inset 0 -1px 0 rgba(0, 0, 0, .15),
+        0 4px 12px rgba(0, 0, 0, .2);
+}
+
+/* Tornillos decorativos en esquinas (esqueuomorfismo) */
+.panel-metal::before,
+.panel-metal::after {
+    content: "⬤";
+    position: absolute;
+    font-size: 8px;
+    color: var(--tornillo);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.panel-metal {
+    position: relative;
+}
+
+.panel-metal::before {
+    top: 8px;
+    left: 10px;
+}
+
+.panel-metal::after {
+    top: 8px;
+    right: 10px;
+}
+
+/* ── Cabecera: tablero de control ───────────────────────────── */
+.site-header {
+    background: linear-gradient(180deg, var(--metal-dark) 0%, #1a2530 100%);
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    border-bottom: 4px solid var(--acento);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
+}
+
+.site-header h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--acento);
+    text-shadow: 0 0 12px rgba(232, 160, 32, .4);
+}
+
+.header-led {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.led {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, .4);
+    box-shadow: 0 0 6px currentColor, inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+
+.led-verde {
+    background: #2ecc71;
+    color: #2ecc71;
+}
+
+.led-rojo {
+    background: #e74c3c;
+    color: #e74c3c;
+}
+
+.led-amari {
+    background: var(--acento);
+    color: var(--acento);
+}
+
+/* ── Layout principal ───────────────────────────────────────── */
+.layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+    min-height: calc(100vh - 70px);
+}
+
+/* ── Sidebar de controles ────────────────────────────────────── */
+.sidebar {
+    background: linear-gradient(180deg, #b8c8d4 0%, #a0b0bc 100%);
+    border-right: 3px solid var(--metal-3);
+    padding: 20px 16px;
+    box-shadow: inset -4px 0 8px rgba(0, 0, 0, .1);
+}
+
+.sidebar-title {
+    font-size: .7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--texto-s);
+    margin-bottom: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--metal-3);
+}
+
+/* Botón físico tipo industrial */
+.btn-industrial {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: linear-gradient(180deg, #d8e4f0 0%, #b8c8d8 100%);
+    border-top: 2px solid #e8f2ff;
+    border-left: 2px solid #e0eaf6;
+    border-right: 2px solid #8898a8;
+    border-bottom: 2px solid #788898;
+    color: var(--texto);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2), inset 0 1px 0 rgba(255, 255, 255, .5);
+    transition: all .1s;
+}
+
+.btn-industrial:active {
+    border-top-color: #788898;
+    border-left-color: #8898a8;
+    border-right-color: #e8f2ff;
+    border-bottom-color: #e0eaf6;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2), inset 0 1px 3px rgba(0, 0, 0, .15);
+    transform: translateY(1px);
+}
+
+.btn-industrial.peligro {
+    border-top-color: #f08070;
+    border-left-color: #f08070;
+    border-right-color: #901010;
+    border-bottom-color: #901010;
+    color: var(--peligro);
+}
+
+.btn-industrial.ok {
+    border-top-color: #80d8a0;
+    border-left-color: #80d8a0;
+    border-right-color: #107040;
+    border-bottom-color: #107040;
+    color: #196830;
+}
+
+/* Input tipo industrial */
+.input-industrial {
+    width: 100%;
+    padding: 9px 12px;
+    margin-bottom: 10px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: .9rem;
+    background: linear-gradient(180deg, #a0aab4 0%, #b0bccc 100%);
+    border: none;
+    border-top: 2px solid #788898;
+    border-left: 2px solid #8898a8;
+    border-right: 2px solid #d0dce8;
+    border-bottom: 2px solid #c8d4e0;
+    border-radius: 3px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15);
+    color: var(--texto);
+}
+
+.input-industrial:focus {
+    outline: 2px solid var(--acento);
+}
+
+.sidebar-label {
+    font-size: .75rem;
+    letter-spacing: 1px;
+    color: var(--texto-s);
+    margin-bottom: 4px;
+    display: block;
+}
+
+.divider {
+    border: none;
+    border-top: 2px groove var(--metal-2);
+    margin: 18px 0;
+}
+
+/* ── Área principal: tabla de inventario ────────────────────── */
+.main-content {
+    padding: 24px;
+}
+
+.panel-metal.tabla-panel {
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.tabla-header {
+    background: linear-gradient(180deg, var(--metal-dark) 0%, #253545 100%);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tabla-header h2 {
+    font-size: 1rem;
+    color: var(--acento);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.tabla-header span {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .8rem;
+    color: #8898a8;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: linear-gradient(180deg, #a8b8c8 0%, #98a8b8 100%);
+}
+
+thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: .75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto);
+    border-right: 1px solid var(--metal-3);
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--metal-2);
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, .25);
+}
+
+tbody td {
+    padding: 12px 14px;
+    font-size: .9rem;
+    border-right: 1px solid rgba(0, 0, 0, .05);
+}
+
+.badge-cat {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #607080, #405060);
+    color: #c8d8e8;
+    border: 1px solid #507090;
+}
+
+.stock-valor {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+}
+
+.stock-bajo {
+    color: var(--peligro);
+}
+
+.stock-medio {
+    color: var(--acento);
+}
+
+.stock-alto {
+    color: var(--acento2);
+}
+
+.td-acciones {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: .75rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 2px;
+    font-family: 'Roboto Condensed', sans-serif;
+    border: 1px solid;
+    transition: all .1s;
+}
+
+.btn-sm.mas {
+    background: #d0e8d0;
+    border-color: #60a860;
+    color: #1a5a1a;
+}
+
+.btn-sm.mas:hover {
+    background: #b0d8b0;
+}
+
+.btn-sm.menos {
+    background: #f0d8d0;
+    border-color: #c05040;
+    color: #7a1010;
+}
+
+.btn-sm.menos:hover {
+    background: #e8c0b0;
+}
+
+/* ── Panel de estado/log ─────────────────────────────────────── */
+.panel-metal.log-panel {
+    padding: 16px;
+}
+
+.log-titulo {
+    font-size: .75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--texto-s);
+    margin-bottom: 12px;
+}
+
+.log-linea {
+    font-family: 'Roboto Mono', monospace;
+    font-size: .82rem;
+    padding: 4px 0;
+    border-bottom: 1px dotted var(--metal-2);
+}
+
+.log-ok {
+    color: var(--acento2);
+}
+
+.log-warn {
+    color: var(--acento);
+}
+
+.log-error {
+    color: var(--peligro);
+    font-weight: 700;
+}

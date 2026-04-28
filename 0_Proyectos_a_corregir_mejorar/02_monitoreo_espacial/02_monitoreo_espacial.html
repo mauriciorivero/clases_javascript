@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpaceX — Centro de Monitoreo de Misiones</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles-monitoreo.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+     CABECERA PRINCIPAL
+     Identifica el centro de control y muestra el estado global.
+     Los puntos de color pulsan para indicar conexión en vivo.
+============================================================ -->
+  <header class="site-header">
+    <h1>⚡ SPACEX CONTROL CENTER</h1>
+    <div class="header-status">
+      <span><span class="status-dot dot-verde"></span>Telemetría OK</span>
+      <span><span class="status-dot dot-amari"></span>Clima: Moderado</span>
+      <span style="font-family:'Orbitron',monospace; font-size:.9rem; color:var(--acento);"
+        id="relojHeader">--:--:--</span>
+    </div>
+  </header>
+
+  <!-- ============================================================
+     MÉTRICAS GLOBALES
+     Tarjetas de resumen con los totales del sistema.
+     Se poblán desde el array `misiones` mediante calcularMetricas().
+============================================================ -->
+  <section class="metricas" id="seccionMetricas">
+    <div class="metrica-card glass">
+      <span class="metrica-numero" id="metTotal">0</span>
+      <span class="metrica-label">Misiones Totales</span>
+    </div>
+    <div class="metrica-card glass">
+      <span class="metrica-numero" id="metActivas">0</span>
+      <span class="metrica-label">Activas</span>
+    </div>
+    <div class="metrica-card glass">
+      <span class="metrica-numero" id="metAlerta">0</span>
+      <span class="metrica-label">En Alerta</span>
+    </div>
+    <div class="metrica-card glass">
+      <span class="metrica-numero" id="metCombPromedio">0%</span>
+      <span class="metrica-label">Combustible Promedio</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     GRID DE MISIONES
+     Cada tarjeta muestra los datos de una misión activa.
+     Se genera dinámicamente con renderizarMisiones().
+============================================================ -->
+  <section class="seccion">
+    <h2>▶ MISIONES EN CURSO</h2>
+    <div class="grid-misiones" id="gridMisiones"></div>
+  </section>
+
+  <!-- ============================================================
+     LOG DEL SISTEMA
+     Registro de eventos y errores del sistema de monitoreo.
+     Se actualiza con agregarLog() desde las funciones JS.
+============================================================ -->
+  <section class="log-panel">
+    <h2>▶ LOG DEL SISTEMA</h2>
+    <div class="glass log-box" id="logBox">
+      <p>Sistema de monitoreo iniciado.</p>
+    </div>
+  </section>
+
+
+  <script src="js/control-monitoreo.js"></script>
+</body>
+
+</html>

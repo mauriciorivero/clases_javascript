@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moda Urbana — Tienda de Ropa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles_ropa.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+     CABECERA
+     Muestra el nombre de la tienda y el botón del carrito.
+     El span #cartCount se actualiza con JS cada vez que
+     se agrega un producto.
+============================================================ -->
+  <header class="site-header">
+    <h1>👗 MODA URBANA</h1>
+    <button class="neu-btn" id="btnAbrirCarrito" style="font-size:1rem;">
+      🛒 Carrito &nbsp;<span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <!-- ============================================================
+     BARRA DE FILTROS
+     Cada botón tiene data-cat que se lee en filtrarPorCategoria().
+     El botón activo recibe la clase `.activo` para el estilo hundido.
+============================================================ -->
+  <div class="filtros" id="filtrosBar">
+    <button class="neu-btn activo" data-cat="todos">Todos</button>
+    <button class="neu-btn" data-cat="camisetas">Camisetas</button>
+    <button class="neu-btn" data-cat="pantalones">Pantalones</button>
+    <button class="neu-btn" data-cat="accesorios">Accesorios</button>
+    <button class="neu-btn" data-cat="calzado">Calzado</button>
+  </div>
+
+  <!-- ============================================================
+     GRID DE PRODUCTOS
+     Se puebla dinámicamente con renderizarProductos().
+     Cada tarjeta se genera en JS a partir del array `catalogo`.
+============================================================ -->
+  <main class="grid-productos" id="productosGrid"></main>
+
+  <!-- ============================================================
+     PANEL DEL CARRITO (slide-in desde la derecha)
+     El overlay oscurecido cierra el panel al hacer clic.
+     Los ítems del carrito se renderizan dentro de #cartItems.
+============================================================ -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-panel" id="cartPanel">
+    <button class="btn-cerrar-cart" id="btnCerrarCarrito">✕</button>
+    <h2>🛒 Mi Carrito</h2>
+    <div id="cartItems"></div>
+    <div class="cart-total-box">
+      <p>Total: <span id="cartTotal">$0</span></p>
+    </div>
+  </aside>
+
+  <!-- Notificación breve al agregar un producto -->
+  <div class="toast" id="toast">✓ Producto agregado al carrito</div>
+
+
+  <script src="js/control-ropa.js"></script>
+</body>
+
+</html>

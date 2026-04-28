@@ -1,0 +1,354 @@
+/*
+     * ═══════════════════════════════════════════════════════════════
+     *  ESTILO: GLASSMORFISMO (Glassmorphism)
+     *
+     *  El glassmorfismo simula vidrio esmerilado usando:
+     *    - Fondo semi-transparente: background: rgba(255,255,255, 0.08)
+     *    - Desenfoque de fondo: backdrop-filter: blur(16px)
+     *    - Borde sutil: border: 1px solid rgba(255,255,255, 0.18)
+     *
+     *  Requiere un fondo rico (gradiente o imagen) para que el
+     *  efecto de translucidez sea visible.
+     * ═══════════════════════════════════════════════════════════════
+     */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --glass-bg: rgba(255, 255, 255, .07);
+    --glass-border: rgba(255, 255, 255, .15);
+    --glass-blur: 18px;
+    --acento: #00d4ff;
+    --acento2: #ff6b35;
+    --verde: #39ff88;
+    --rojo: #ff4757;
+    --amarillo: #ffd32a;
+    --texto: #e8f4fd;
+    --texto-s: #94b5cb;
+}
+
+/* ── Fondo espacial con estrellas CSS ────────────────────────── */
+body {
+    background: radial-gradient(ellipse at top, #0d1b3e 0%, #050818 60%, #000 100%);
+    font-family: 'Exo 2', sans-serif;
+    color: var(--texto);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Estrellas generadas con CSS puro */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, .8), transparent),
+        radial-gradient(1px 1px at 60% 10%, rgba(255, 255, 255, .6), transparent),
+        radial-gradient(2px 2px at 80% 70%, rgba(255, 255, 255, .5), transparent),
+        radial-gradient(1px 1px at 10% 80%, rgba(255, 255, 255, .7), transparent),
+        radial-gradient(1px 1px at 45% 55%, rgba(255, 255, 255, .4), transparent),
+        radial-gradient(2px 2px at 90% 20%, rgba(255, 255, 255, .6), transparent),
+        radial-gradient(1px 1px at 35% 90%, rgba(255, 255, 255, .5), transparent),
+        radial-gradient(1px 1px at 70% 45%, rgba(255, 255, 255, .7), transparent),
+        radial-gradient(1px 1px at 5% 50%, rgba(255, 255, 255, .6), transparent),
+        radial-gradient(2px 2px at 55% 75%, rgba(255, 255, 255, .3), transparent);
+    pointer-events: none;
+}
+
+/* ── Panel de vidrio (mixin reutilizable) ────────────────────── */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+}
+
+/* ── Cabecera ─────────────────────────────────────────────────── */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: rgba(0, 0, 0, .35);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+}
+
+.site-header h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--acento);
+    letter-spacing: 4px;
+    text-shadow: 0 0 20px rgba(0, 212, 255, .5);
+}
+
+.header-status {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulsar 1.5s infinite;
+}
+
+.dot-verde {
+    background: var(--verde);
+    box-shadow: 0 0 8px var(--verde);
+}
+
+.dot-rojo {
+    background: var(--rojo);
+    box-shadow: 0 0 8px var(--rojo);
+}
+
+.dot-amari {
+    background: var(--amarillo);
+    box-shadow: 0 0 8px var(--amarillo);
+}
+
+@keyframes pulsar {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .5;
+        transform: scale(1.4);
+    }
+}
+
+/* ── Sección de métricas superiores ──────────────────────────── */
+.metricas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 32px 48px 16px;
+}
+
+.metrica-card {
+    padding: 22px 18px;
+    text-align: center;
+}
+
+.metrica-numero {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--acento);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.metrica-label {
+    font-size: .8rem;
+    color: var(--texto-s);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ── Grid de misiones ─────────────────────────────────────────── */
+.seccion {
+    padding: 16px 48px;
+    margin-bottom: 8px;
+}
+
+.seccion h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--acento);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.grid-misiones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* ── Tarjeta de misión ────────────────────────────────────────── */
+.mision-card {
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mision-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.mision-card.activa::before {
+    background: linear-gradient(90deg, var(--verde), transparent);
+}
+
+.mision-card.en-curso::before {
+    background: linear-gradient(90deg, var(--amarillo), transparent);
+}
+
+.mision-card.alerta::before {
+    background: linear-gradient(90deg, var(--rojo), transparent);
+}
+
+.mision-id {
+    font-family: 'Orbitron', monospace;
+    font-size: .7rem;
+    color: var(--texto-s);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.mision-nombre {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #fff;
+}
+
+.mision-tipo {
+    font-size: .8rem;
+    color: var(--texto-s);
+    margin-bottom: 18px;
+}
+
+.dato-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: .85rem;
+}
+
+.dato-label {
+    color: var(--texto-s);
+}
+
+.dato-valor {
+    font-weight: 600;
+}
+
+/* Barra de combustible */
+.barra-container {
+    background: rgba(255, 255, 255, .08);
+    border-radius: 4px;
+    height: 6px;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+
+.barra-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--verde), var(--acento));
+    transition: width .5s ease;
+}
+
+.badge-estado {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.badge-activa {
+    background: rgba(57, 255, 136, .15);
+    color: var(--verde);
+    border: 1px solid var(--verde);
+}
+
+.badge-curso {
+    background: rgba(255, 211, 42, .15);
+    color: var(--amarillo);
+    border: 1px solid var(--amarillo);
+}
+
+.badge-alerta {
+    background: rgba(255, 71, 87, .15);
+    color: var(--rojo);
+    border: 1px solid var(--rojo);
+}
+
+.btn-glass {
+    display: inline-block;
+    padding: 9px 18px;
+    background: rgba(0, 212, 255, .1);
+    border: 1px solid rgba(0, 212, 255, .3);
+    border-radius: 8px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--acento);
+    transition: all .2s;
+    margin-top: 4px;
+}
+
+.btn-glass:hover {
+    background: rgba(0, 212, 255, .2);
+}
+
+/* ── Panel de alerta / log ────────────────────────────────────── */
+.log-panel {
+    padding: 16px 48px 40px;
+}
+
+.log-panel h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--acento);
+    margin-bottom: 16px;
+}
+
+.log-box {
+    padding: 20px 24px;
+    font-family: monospace;
+    font-size: .85rem;
+    color: var(--verde);
+    line-height: 1.8;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.log-box p {
+    margin: 0;
+}
+
+.log-box p::before {
+    content: "› ";
+    color: var(--acento);
+}
+
+.log-error {
+    color: var(--rojo) !important;
+}
