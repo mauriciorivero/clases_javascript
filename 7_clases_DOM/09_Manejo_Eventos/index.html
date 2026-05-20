@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo de Eventos - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Dashboard de Eventos</h1>
+        </header>
+
+        <section class="controles">
+            <button class="btn rojo" data-accion="texto">Cambiar texto</button>
+            <button class="btn verde" data-accion="agregar">Agregar item</button>
+            <button class="btn azul" data-accion="remover">Remover item</button>
+        </section>
+
+        <section class="entrada">
+            <input type="text" id="campo" placeholder="Escribe y presiona Enter">
+        </section>
+
+        <section class="visualizacion">
+            <h2 id="titulo">Resultado en vivo</h2>
+            <ul id="lista"></ul>
+            <p id="info-evento">—</p>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

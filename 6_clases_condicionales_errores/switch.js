@@ -1,5 +1,6 @@
 function determinarPrecio(fruta){
     let precio = 0;
+
     switch (fruta) {
     case "naranja":
         precio = 0.59; 
@@ -14,7 +15,8 @@ function determinarPrecio(fruta){
         return precio;
     break;
     default: precio = 0.5;
+    return precio;
     }
 }
 
-console.log(determinarPrecio("mango"));
+console.log(determinarPrecio("naranja"));

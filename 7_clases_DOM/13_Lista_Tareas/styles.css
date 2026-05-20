@@ -1,0 +1,70 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: sans-serif;
+    background: #0f172a;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.card {
+    width: 500px;
+    max-width: 100%;
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+h1 { margin-top: 0; text-align: center; }
+
+#formulario {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+}
+
+#nueva {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: #fff;
+}
+
+button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #6366f1;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+ul { list-style: none; padding: 0; margin: 0; }
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #334155;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+li.completada { text-decoration: line-through; opacity: 0.6; }
+
+li .eliminar {
+    background: #ef4444;
+    padding: 4px 10px;
+    border-radius: 6px;
+}

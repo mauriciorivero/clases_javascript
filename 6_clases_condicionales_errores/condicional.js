@@ -1,22 +1,18 @@
-function mayorDeEdad(edad, nacionalidad){
-    let nacion = nacionalidad.toLowerCase();
-    if((edad>=18)&&(nacionalidad==="Colombia")){
-        return "es mayor de edad en colombia";
-    }else if((nacionalidad==="usa")||(nacionalidad==="us")||(nacionalidad==="united states")||(nacionalidad==="estados unidos")){
-        if(edad>=17){
-            return "es mayor de edad en USA";
-        }else{
-            return " no es mayor de edad en USA";
-        }
-        
-        
-    }else if((edad>=19)&&(nacionalidad===("Suecia"))){
-        return "es mayor de edad en suecia";
-    }else{
-        return "No se puede determinar edad o nacionalidad"
+function permitirAcceso(edad, nacionalidad){
+    let pais = nacionalidad.toLowerCase();
+
+    if((edad >= 18)&&(nacionalidad === "colombia")){
+        return true;
+    } else 
+    if((edad >= 17)&&(pais === "usa" || pais === "estados unidos" || pais === "united states")){
+        return true;
+    } else
+    if((edad >= 19)&&(nacionalidad === "suecia")){
+        return true;
     }
+
     return false;
+
 }
 
-let respuesta = mayorDeEdad(15, "Estados Unidos");
-console.log(respuesta);
+console.log(permitirAcceso(18, "ESTADOS UNIDOS"));

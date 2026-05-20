@@ -1,0 +1,40 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background: #0f172a;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background: #1e293b;
+    padding: 2rem 3rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+#tiempo {
+    font-family: monospace;
+    font-size: 3rem;
+    margin: 1rem 0;
+    color: #22d3ee;
+}
+
+.botones { display: flex; gap: 8px; justify-content: center; }
+
+button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#iniciar   { background: #22c55e; }
+#pausar    { background: #f59e0b; }
+#reiniciar { background: #ef4444; }
