@@ -2,17 +2,18 @@
 
 // ERROR 1: Hoisting y TDZ (Temporal Dead Zone)
 // Se intenta usar la variable antes de su declaración con 'let' [1].
-let version = "1.0.4";
 console.log("Iniciando sistema versión: " + version); 
+let version = "1.0.4";
 
 // ERROR 2: Const y Reasignación
 // Una constante no puede cambiar su referencia tras ser inicializada [2, 3].
-const SISTEMA_ID = "AX-88";
+const SISTEMA_ID
+SISTEMA_ID = "AX-88";
 
 // ERROR 3: Scope de Bloque
 // 'let' solo es visible dentro de las llaves donde se declara [4, 5].
+let claveSecreta = "998877";
 if (true) {
-    let claveSecreta = "998877";
     document.getElementById('status-display').innerText = "Cargando: " + claveSecreta;
 }
 
@@ -21,7 +22,7 @@ if (true) {
 // Al usar 'var', la variable se escapa del bloque y puede causar colisiones [6].
 // Intentar redelcarar 'let' en el mismo ámbito dará error [7, 8].
 let usuario = "Admin";
-usuario = "Guest"; 
+let usuario = "Guest"; 
 
 // ERROR 5: Closure (Clausura)
 // El objetivo es que cada vez que se presione "LOG", el contador suba.

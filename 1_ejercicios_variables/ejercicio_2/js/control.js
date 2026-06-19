@@ -7,8 +7,7 @@ function mostrarStatus() {
 }
 
 //
-let nivelOxigeno = 100;
-nivelOxigeno = 85; 
+
 
 //
 function iniciarProceso() {
