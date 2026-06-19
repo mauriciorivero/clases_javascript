@@ -2,7 +2,8 @@
 
 //
 function mostrarStatus() {
-    const tanqueID = "T-400";
+    const tanqueID;
+    tanqueID = "T-400";
     console.log("Revisando: " + tanqueID); 
 }
 
@@ -11,8 +12,8 @@ function mostrarStatus() {
 
 //
 function iniciarProceso() {
+    let mensajeInterno = "OXÍGENO OK";
     if (true) {
-        let mensajeInterno = "OXÍGENO OK";
         document.getElementById('log-display').innerText = mensajeInterno;
     }
     // 
